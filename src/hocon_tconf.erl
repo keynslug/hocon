@@ -535,8 +535,7 @@ map_field_maybe_convert(Type, Schema, Value0, Opts, Converter) ->
                         Value0
                 end,
             Value3 = maybe_mkrich(Opts, Value2, Box),
-            {Mapped, Value4} = map_field(Type, Schema, Value3, Opts),
-            {Mapped, ensure_obfuscate_sensitive(Opts, Schema, Value4)}
+            map_field(Type, Schema, Value3, Opts)
     catch
         throw:Reason ->
             {validation_errs(Opts, #{reason => Reason}), Value0};
